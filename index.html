@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>محمود و روان</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rose:#C97B84;
+    --blush:#F4E4E1;
+    --plum:#4A2C3D;
+    --cream:#FBF6F3;
+    --gold:#C9A875;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Cairo', sans-serif;
+    background:var(--cream);
+    color:var(--plum);
+    overflow-x:hidden;
+  }
+  .section{
+    padding:80px 24px;
+    max-width:640px;
+    margin:0 auto;
+    text-align:center;
+  }
+
+  /* HERO */
+  .hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    padding:40px 24px;
+    background:linear-gradient(180deg, var(--blush) 0%, var(--cream) 70%);
+  }
+  .rings{
+    width:180px;
+    height:110px;
+    position:relative;
+    margin-bottom:8px;
+    opacity:0;
+    animation:fadeIn 1.4s ease forwards 0.2s;
+  }
+  .rings svg{width:100%; height:100%;}
+  .eyebrow{
+    font-size:13px;
+    letter-spacing:4px;
+    color:var(--rose);
+    text-transform:uppercase;
+    opacity:0;
+    animation:fadeUp 1s ease forwards 0.6s;
+  }
+  .names{
+    font-family:'Aref Ruqaa', serif;
+    font-size:clamp(48px, 12vw, 76px);
+    font-weight:700;
+    color:var(--plum);
+    line-height:1.3;
+    margin:18px 0 6px;
+    opacity:0;
+    animation:fadeUp 1s ease forwards 0.9s;
+  }
+  .amp{
+    color:var(--gold);
+    font-size:0.6em;
+    display:block;
+    margin:2px 0;
+  }
+  .hero-date{
+    font-size:16px;
+    letter-spacing:2px;
+    color:var(--rose);
+    margin-top:10px;
+    opacity:0;
+    animation:fadeUp 1s ease forwards 1.2s;
+  }
+  .scroll-hint{
+    position:absolute;
+    bottom:32px;
+    font-size:12px;
+    color:var(--rose);
+    opacity:0;
+    animation:fadeIn 1s ease forwards 1.8s, bounce 2.2s ease-in-out infinite 2.5s;
+    letter-spacing:2px;
+  }
+
+  @keyframes fadeUp{
+    from{opacity:0; transform:translateY(16px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  @keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+  }
+  @keyframes bounce{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(6px);}
+  }
+
+  .divider{
+    width:60px;
+    height:2px;
+    background:var(--gold);
+    margin:28px auto;
+    border:none;
+    opacity:0.6;
+  }
+
+  .verse{
+    font-family:'Aref Ruqaa', serif;
+    font-size:22px;
+    line-height:2;
+    color:var(--plum);
+    padding:0 8px;
+  }
+  .verse-ref{
+    font-size:13px;
+    color:var(--rose);
+    margin-top:10px;
+    letter-spacing:1px;
+  }
+
+  /* COUNTDOWN */
+  .countdown-wrap{
+    background:var(--blush);
+  }
+  .section-title{
+    font-family:'Aref Ruqaa', serif;
+    font-size:32px;
+    margin-bottom:32px;
+    color:var(--plum);
+  }
+  .countdown{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .count-box{
+    background:var(--cream);
+    border:1px solid rgba(201,168,117,0.35);
+    border-radius:14px;
+    padding:18px 14px;
+    min-width:76px;
+  }
+  .count-num{
+    font-size:32px;
+    font-weight:700;
+    color:var(--rose);
+    font-variant-numeric:tabular-nums;
+  }
+  .count-label{
+    font-size:12px;
+    color:var(--plum);
+    opacity:0.7;
+    margin-top:4px;
+  }
+
+  /* DETAILS */
+  .details-grid{
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+    margin-top:20px;
+  }
+  .detail-card{
+    background:var(--blush);
+    border-radius:16px;
+    padding:24px;
+    text-align:center;
+  }
+  .detail-icon{
+    font-size:26px;
+    margin-bottom:10px;
+    display:block;
+  }
+  .detail-label{
+    font-size:13px;
+    color:var(--rose);
+    letter-spacing:1px;
+    margin-bottom:6px;
+  }
+  .detail-value{
+    font-size:19px;
+    font-weight:600;
+    color:var(--plum);
+  }
+  .detail-sub{
+    font-size:14px;
+    color:var(--plum);
+    opacity:0.65;
+    margin-top:4px;
+  }
+
+  .map-link{
+    display:inline-block;
+    margin-top:16px;
+    padding:10px 22px;
+    background:var(--rose);
+    color:var(--cream);
+    text-decoration:none;
+    border-radius:999px;
+    font-size:14px;
+    font-weight:600;
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .map-link:active{transform:scale(0.97);}
+
+  /* RSVP */
+  .rsvp-wrap{
+    background:var(--blush);
+  }
+  .rsvp-form{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    margin-top:24px;
+    text-align:right;
+  }
+  .field-label{
+    font-size:14px;
+    color:var(--plum);
+    margin-bottom:6px;
+    display:block;
+  }
+  input[type="text"], input[type="tel"], select{
+    width:100%;
+    padding:14px 16px;
+    border-radius:12px;
+    border:1px solid rgba(74,44,61,0.15);
+    background:var(--cream);
+    color:var(--plum);
+    font-family:'Cairo', sans-serif;
+    font-size:15px;
+    outline:none;
+    transition:border-color 0.2s ease;
+  }
+  input:focus, select:focus{
+    border-color:var(--rose);
+  }
+  .attend-toggle{
+    display:flex;
+    gap:10px;
+  }
+  .attend-btn{
+    flex:1;
+    padding:14px;
+    border-radius:12px;
+    border:1px solid rgba(74,44,61,0.15);
+    background:var(--cream);
+    color:var(--plum);
+    font-family:'Cairo', sans-serif;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:all 0.2s ease;
+  }
+  .attend-btn.active{
+    background:var(--rose);
+    color:var(--cream);
+    border-color:var(--rose);
+  }
+  .submit-btn{
+    padding:16px;
+    border-radius:12px;
+    border:none;
+    background:var(--plum);
+    color:var(--cream);
+    font-family:'Cairo', sans-serif;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+    margin-top:6px;
+    transition:transform 0.15s ease, background 0.2s ease;
+  }
+  .submit-btn:active{transform:scale(0.98);}
+  .submit-btn:disabled{opacity:0.6; cursor:not-allowed;}
+
+  .rsvp-status{
+    margin-top:16px;
+    font-size:14px;
+    padding:14px;
+    border-radius:12px;
+    display:none;
+  }
+  .rsvp-status.show{display:block;}
+  .rsvp-status.success{
+    background:rgba(201,123,132,0.15);
+    color:var(--rose);
+  }
+  .rsvp-status.error{
+    background:rgba(200,60,60,0.1);
+    color:#a83c3c;
+  }
+
+  footer{
+    text-align:center;
+    padding:40px 24px 60px;
+    font-family:'Aref Ruqaa', serif;
+    font-size:20px;
+    color:var(--rose);
+  }
+  footer span{
+    display:block;
+    font-family:'Cairo', sans-serif;
+    font-size:12px;
+    color:var(--plum);
+    opacity:0.5;
+    margin-top:8px;
+    letter-spacing:1px;
+  }
+
+  @media (min-width:520px){
+    .countdown{gap:20px;}
+    .count-box{min-width:90px; padding:22px 18px;}
+    .count-num{font-size:38px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+    .rings, .eyebrow, .names, .hero-date, .scroll-hint{opacity:1;}
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="rings">
+    <svg viewBox="0 0 180 110" fill="none">
+      <circle cx="70" cy="60" r="42" stroke="#C9A875" stroke-width="3"/>
+      <circle cx="110" cy="60" r="42" stroke="#C97B84" stroke-width="3"/>
+    </svg>
+  </div>
+  <div class="eyebrow">دعوة زفاف</div>
+  <h1 class="names">محمود<span class="amp">&amp;</span>روان</h1>
+  <div class="hero-date">١٤ أغسطس ٢٠٢٦</div>
+  <div class="scroll-hint">مرر لأسفل ↓</div>
+</section>
+
+<section class="section">
+  <p class="verse">
+    وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا<br>
+    وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً
+  </p>
+  <div class="verse-ref">سورة الروم - آية ٢١</div>
+</section>
+
+<section class="section countdown-wrap" id="countdown-section">
+  <div class="section-title">باقي على الفرح</div>
+  <div class="countdown" id="countdown">
+    <div class="count-box"><div class="count-num" id="days">--</div><div class="count-label">يوم</div></div>
+    <div class="count-box"><div class="count-num" id="hours">--</div><div class="count-label">ساعة</div></div>
+    <div class="count-box"><div class="count-num" id="mins">--</div><div class="count-label">دقيقة</div></div>
+    <div class="count-box"><div class="count-num" id="secs">--</div><div class="count-label">ثانية</div></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-title">تفاصيل الفرح</div>
+  <div class="details-grid">
+    <div class="detail-card">
+      <span class="detail-icon">📅</span>
+      <div class="detail-label">التاريخ</div>
+      <div class="detail-value">الجمعة، ١٤ أغسطس ٢٠٢٦</div>
+    </div>
+    <div class="detail-card">
+      <span class="detail-icon">🕰️</span>
+      <div class="detail-label">الوقت</div>
+      <div class="detail-value" id="time-value">هيتحدد قريبًا</div>
+      <div class="detail-sub">هنبعتلكم الوقت بالظبط أول ما يتحدد</div>
+    </div>
+    <div class="detail-card">
+      <span class="detail-icon">📍</span>
+      <div class="detail-label">المكان</div>
+      <div class="detail-value" id="location-value">هيتحدد قريبًا</div>
+      <div class="detail-sub">تابعوا معانا، هنضيف الموقع أول ما يتأكد</div>
+      <a class="map-link" id="map-link" href="#" style="display:none;">افتح الموقع على الخريطة</a>
+    </div>
+  </div>
+</section>
+
+<section class="section rsvp-wrap">
+  <div class="section-title">تأكيد الحضور</div>
+  <p style="font-size:14px; opacity:0.75; margin-top:-16px;">وجودكم هيفرحنا جدًا، محتاجين نعرف تحضروا معانا ولا لأ</p>
+
+  <form class="rsvp-form" id="rsvp-form">
+    <div>
+      <label class="field-label">الاسم بالكامل</label>
+      <input type="text" id="guest-name" placeholder="اكتب اسمك هنا" required>
+    </div>
+    <div>
+      <label class="field-label">رقم الموبايل</label>
+      <input type="tel" id="guest-phone" placeholder="01xxxxxxxxx" required>
+    </div>
+    <div>
+      <label class="field-label">عدد الحضور (مع حضرتك)</label>
+      <select id="guest-count">
+        <option value="1">شخص واحد</option>
+        <option value="2">شخصين</option>
+        <option value="3">٣ أشخاص</option>
+        <option value="4">٤ أشخاص</option>
+        <option value="5">٥ أشخاص أو أكتر</option>
+      </select>
+    </div>
+    <div>
+      <label class="field-label">هل هتحضر؟</label>
+      <div class="attend-toggle">
+        <button type="button" class="attend-btn" data-value="yes">هحضر ان شاء الله</button>
+        <button type="button" class="attend-btn" data-value="no">معتذر</button>
+      </div>
+    </div>
+    <button type="submit" class="submit-btn" id="submit-btn">تأكيد الحضور</button>
+  </form>
+  <div class="rsvp-status" id="rsvp-status"></div>
+</section>
+
+<footer>
+  بإذن الله<br>
+  <span>محمود &amp; روان — ١٤.٠٨.٢٠٢٦</span>
+</footer>
+
+<script>
+  // ---- Countdown ----
+  const weddingDate = new Date('2026-08-14T18:00:00+02:00').getTime();
+
+  function updateCountdown(){
+    const now = new Date().getTime();
+    const diff = weddingDate - now;
+
+    if(diff <= 0){
+      document.getElementById('countdown').innerHTML = '<div style="font-size:20px; color:#C97B84;">الفرح النهارده! 🎉</div>';
+      return;
+    }
+
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const mins = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const secs = Math.floor((diff % (1000*60)) / 1000);
+
+    document.getElementById('days').textContent = days;
+    document.getElementById('hours').textContent = String(hours).padStart(2,'0');
+    document.getElementById('mins').textContent = String(mins).padStart(2,'0');
+    document.getElementById('secs').textContent = String(secs).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // ---- RSVP form ----
+  let attending = null;
+  const attendBtns = document.querySelectorAll('.attend-btn');
+  attendBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      attendBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      attending = btn.dataset.value;
+    });
+  });
+
+  const form = document.getElementById('rsvp-form');
+  const statusEl = document.getElementById('rsvp-status');
+  const submitBtn = document.getElementById('submit-btn');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById('guest-name').value.trim();
+    const phone = document.getElementById('guest-phone').value.trim();
+    const count = document.getElementById('guest-count').value;
+
+    if(!name || !phone){
+      showStatus('من فضلك اكتب الاسم ورقم الموبايل', 'error');
+      return;
+    }
+    if(!attending){
+      showStatus('من فضلك اختار هل هتحضر ولا لأ', 'error');
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'جاري الإرسال...';
+
+    try{
+      const entry = {
+        name, phone, count, attending,
+        timestamp: new Date().toISOString()
+      };
+      const key = 'rsvp:' + Date.now() + '-' + Math.random().toString(36).slice(2,8);
+
+      const result = await window.storage.set(key, JSON.stringify(entry), true);
+
+      if(result){
+        showStatus(
+          attending === 'yes'
+            ? 'شكرًا يا ' + name + '! تم تأكيد حضورك، في انتظارك بفرحنا 💕'
+            : 'شكرًا يا ' + name + '! هنفتقدك بس نورتنا بردك 💐',
+          'success'
+        );
+        form.reset();
+        attendBtns.forEach(b => b.classList.remove('active'));
+        attending = null;
+      } else {
+        showStatus('حصل خطأ، ممكن تحاول تاني؟', 'error');
+      }
+    } catch(err){
+      showStatus('حصل خطأ في الإرسال، ممكن تحاول تاني؟', 'error');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'تأكيد الحضور';
+    }
+  });
+
+  function showStatus(msg, type){
+    statusEl.textContent = msg;
+    statusEl.className = 'rsvp-status show ' + type;
+  }
+</script>
+
+</body>
+</html>
